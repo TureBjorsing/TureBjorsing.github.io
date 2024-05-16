@@ -10,6 +10,7 @@ let memory = 0; // Lagrat/gamlat värdet från display
 let arithmetic = null; // Vilken beräkning som skall göras +,-, x eller /
 
 let newNum = false; // Nytt nummer på displayen
+let operatorOn = false;
 
 function init() {
     lcd = document.getElementById('lcd');
@@ -28,7 +29,6 @@ function buttonClick(e) {
     if (btn.substring(0, 1) === 'b') {
         let digit = btn.substring(1, 2); // plockar ut siffran från id:et
         addDigit(digit);
-
     } else if(btn.substring(0, 2) === 'co') { // Inte en siffertangent, övriga tangenter.
         addComma();
     } else if(btn.substring(0, 2) === 'cl') {
@@ -37,6 +37,9 @@ function buttonClick(e) {
         calculate();
     } else {
         setOperator(btn.substring(0, 1));
+        if(e.target.tagName === 'BUTTON') {
+            e.target.style.backgroundColor = 'lightgrey';
+        }
     }
 }
 
@@ -72,6 +75,11 @@ function setOperator(operator){
     } else if(operator === 'd') {
         arithmetic = '/';
     }
+
+    if(operatorOn) {
+        calculate();
+    }
+    operatorOn = true;
     memory = parseFloat(lcd.value);
     newNum = true;
 }
@@ -89,6 +97,11 @@ function calculate() {
     } else if(arithmetic === '/') {
         lcd.value = memory / parseFloat(lcd.value);
     }
+    document.getElementById('div').style = 'initial';
+    document.getElementById('mul').style = 'initial';
+    document.getElementById('sub').style = 'initial';
+    document.getElementById('add').style = 'initial';
+    operatorOn = false;
 }
 
 /** Rensar display */
