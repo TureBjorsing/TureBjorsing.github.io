@@ -55,7 +55,7 @@ function addDigit(digit) {
  * Lägger till decimaltecken
  */
 function addComma() {
-
+    lcd.value += '.';
 }
 
 /**
@@ -67,6 +67,10 @@ function setOperator(operator){
         arithmetic = '+';
     } else if(operator === 's') {
         arithmetic = '-';
+    } else if(operator === 'm') {
+        arithmetic = '*';
+    } else if(operator === 'd') {
+        arithmetic = '/';
     }
     memory = parseFloat(lcd.value);
     newNum = true;
@@ -80,6 +84,10 @@ function calculate() {
         lcd.value = memory + parseFloat(lcd.value);
     } else if(arithmetic === '-') {
         lcd.value = memory - parseFloat(lcd.value);
+    } else if(arithmetic === '*') {
+        lcd.value = memory * parseFloat(lcd.value);
+    } else if(arithmetic === '/') {
+        lcd.value = memory / parseFloat(lcd.value);
     }
 }
 
