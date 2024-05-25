@@ -13,14 +13,6 @@ html {
     font-size: 62.5%;
 }
 
-body {
-
-}
-
-main {
-
-}
-
 main input{
     width: 100%;
     font-size: 5rem;
@@ -50,25 +42,4 @@ main section#keyBoard {
 
 main section#keyBoard button {
     font-size: 5rem;
-}
-
-@media (max-width: 767px) {
-    body {
-
-    }
-
-    main {
-
-    }
-
-    main input{
-
-    }
-}
-
-@media (max-width: 339px) {
-    main {
-
-    }
-
 }

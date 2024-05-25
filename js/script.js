@@ -32,7 +32,7 @@ function buttonClick(e) {
     } else if(btn.substring(0, 2) === 'co') { // Inte en siffertangent, övriga tangenter.
         addComma();
     } else if(btn.substring(0, 2) === 'cl') {
-        clearLCD();
+        memClear();
     } else if(btn.substring(0, 1) === 'e') {
         calculate();
     } else {
@@ -40,6 +40,7 @@ function buttonClick(e) {
         if(e.target.tagName === 'BUTTON') {
             e.target.style.backgroundColor = 'lightgrey';
         }
+        memory = parseFloat(lcd.value);
     }
 }
 
@@ -66,6 +67,10 @@ function addComma() {
  * +, -, *, /
  */
 function setOperator(operator){
+    if(operatorOn) {
+        calculate();
+    }
+
     if(operator === 'a') {
         arithmetic = '+';
     } else if(operator === 's') {
@@ -76,11 +81,7 @@ function setOperator(operator){
         arithmetic = '/';
     }
 
-    if(operatorOn) {
-        calculate();
-    }
     operatorOn = true;
-    memory = parseFloat(lcd.value);
     newNum = true;
 }
 
